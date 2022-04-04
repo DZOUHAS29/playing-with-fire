@@ -10,14 +10,14 @@ namespace PlayWithFire.Services
 {
     class AdvanceMapService : IMapService
     {
-        public Shape[,] CreateMap(Size size)
+        public Shape[,] CreateMap(Size mapSize, Size shapeSize)
         {
             throw new NotImplementedException();
         }
 
-        public Shape[,] CreateMap(int collCount, int rowCount)
+        public Shape[,] CreateMap(int collCount, int rowCount, Size shapeSize)
         {
-            return CreateMap(new Size(collCount, rowCount));
+            return CreateMap(new Size(collCount, rowCount), shapeSize);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace PlayWithFire.Interfaces
 {
     interface IMapService
     {
-        Shape[,] CreateMap(Size size);
-        Shape[,] CreateMap(int collCount, int rowCount);
+        Shape[,] CreateMap(Size mapSize, Size shapeSize);
+        Shape[,] CreateMap(int collCount, int rowCount, Size shapeSize);
     }
 }

@@ -13,14 +13,28 @@ namespace PlayWithFire.Services
     /// </summary>
     class BasicMapService : IMapService
     {
-        public Shape[,] CreateMap(Size size)
+        public Shape[,] CreateMap(Size mapSize, Size shapeSize)
         {
-            throw new NotImplementedException();
+            var shapes = new Shape[mapSize.Width, mapSize.Height];
+
+            for (int i = 0; i < shapes.GetLength(0); i++)
+            {
+
+                for (int j = 0; j < shapes.GetLength(1); j++)
+                {
+                    if(i == 0)
+                    {
+                        //shapes[i,j] = new Wall()
+                    }
+                }
+            }
+
+            return shapes;
         }
 
-        public Shape[,] CreateMap(int collCount, int rowCount)
+        public Shape[,] CreateMap(int collCount, int rowCount, Size shapeSize)
         {
-            return CreateMap(new Size(collCount, rowCount));
+            return CreateMap(new Size(collCount, rowCount), shapeSize);
         }
     }
 }
