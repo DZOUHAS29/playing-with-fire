@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PlayWithFire.Interfaces;
+using PlayWithFire.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,16 +12,9 @@ using System.Windows.Forms;
 
 namespace PlayWithFire
 {
-    public class User
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public int age { get; set; }
-    }
     public partial class GamePanel : Form
     {
-        // columns - id, name, surname, email
+        private IMapService mapService;
         public GamePanel()
         {
             InitializeComponent();
@@ -30,7 +25,8 @@ namespace PlayWithFire
             this.pbCanvas.Location = new Point(0, 0);
             this.pbCanvas.Size = this.ClientSize;
 
-
+            mapService = new BasicMapService();
+            mapService = new AdvanceMapService();
         }
     }
 }

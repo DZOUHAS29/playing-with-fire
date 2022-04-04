@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PlayWithFire.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PlayWithFire
 {
-    abstract class Shape
+    abstract class Shape : IDrawable
     {
         public Point Location { get; set; }
         public Size Size { get; set; }
@@ -25,9 +26,12 @@ namespace PlayWithFire
         }
         public Brush Brush { get; set; }
 
-        public Shape()
+        public Shape(Point location, Size size, Brush brush)
         {
-            this.Rectangle = new Rectangle();
+            Location = location;
+            Size = size;
+            Brush = brush;
         }
+        public abstract void Draw(Graphics graphics);
     }
 }
