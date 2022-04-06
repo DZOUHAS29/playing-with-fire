@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMapGeneratorService.cs" />
+    <Compile Include="Others\ColorTranslatorService.cs" />
     <Compile Include="Services\AdvanceMapGeneratorService.cs" />
     <Compile Include="Services\BasicMapGeneratorService.cs" />
     <Compile Include="Services\MapService.cs" />

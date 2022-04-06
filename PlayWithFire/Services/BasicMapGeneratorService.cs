@@ -1,4 +1,5 @@
 ﻿using PlayWithFire.Interfaces;
+using PlayWithFire.Others;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,6 +26,7 @@ namespace PlayWithFire.Services
                     var location = new Point(i * shapeSize.Width, j * shapeSize.Height);
 
                     BuildOuterWalls(i, j, shapes, location, shapeSize);
+                    BuildInnerWalls(i, j, shapes, location, shapeSize);
 
                 }
             }
@@ -32,11 +34,21 @@ namespace PlayWithFire.Services
             return shapes;
         }
 
+        private void BuildInnerWalls(int i, int j, Shape[,] shapes, Point location, Size shapeSize)
+        {
+            if (!IsOuterWall(i,j,shapes) && i%2 == 0 && j%2 == 0)
+            {
+                shapes[i, j] = new UnbreakableWall(location, shapeSize,
+                    ColorTranslatorService.ConvertHexToBrush(Settings.Wall.UbreakableColor));
+            }
+        }
+
         private void BuildOuterWalls(int i, int j, Shape[,] shapes, Point location, Size shapeSize)
         {
             if (IsOuterWall(i, j, shapes))
             {
-                shapes[i, j] = new UnbreakableWall(location, shapeSize, Brushes.Black);
+                shapes[i, j] = new UnbreakableWall(location, shapeSize, 
+                    ColorTranslatorService.ConvertHexToBrush(Settings.Wall.UbreakableColor));
             }
         }
 

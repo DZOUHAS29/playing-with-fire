@@ -8,6 +8,11 @@ namespace PlayWithFire.Others
 {
     static class Settings
     {
-        public static readonly int ShapeGap = 2;
+        public static readonly int ShapeGap = 1;
+
+        public static class Wall
+        {
+            public static readonly string UbreakableColor = "#a3986a";
+        }
     }
 }
