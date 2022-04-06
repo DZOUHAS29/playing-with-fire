@@ -11,7 +11,7 @@ namespace PlayWithFire.Services
     /// <summary>
     /// 
     /// </summary>
-    class BasicMapService : IMapService
+    class BasicMapGeneratorService : IMapGeneratorService
     {
         public Shape[,] CreateMap(Size mapSize, Size shapeSize)
         {
@@ -22,14 +22,27 @@ namespace PlayWithFire.Services
 
                 for (int j = 0; j < shapes.GetLength(1); j++)
                 {
-                    if(i == 0)
-                    {
-                        //shapes[i,j] = new Wall()
-                    }
+                    var location = new Point(i * shapeSize.Width, j * shapeSize.Height);
+
+                    BuildOuterWalls(i, j, shapes, location, shapeSize);
+
                 }
             }
 
             return shapes;
+        }
+
+        private void BuildOuterWalls(int i, int j, Shape[,] shapes, Point location, Size shapeSize)
+        {
+            if (IsOuterWall(i, j, shapes))
+            {
+                shapes[i, j] = new UnbreakableWall(location, shapeSize, Brushes.Black);
+            }
+        }
+
+        private bool IsOuterWall(int i, int j, Shape[,] shapes)
+        {
+            return i == 0 || j == 0 || i == shapes.GetLength(0) - 1 || j == shapes.GetLength(1) - 1;
         }
 
         public Shape[,] CreateMap(int collCount, int rowCount, Size shapeSize)

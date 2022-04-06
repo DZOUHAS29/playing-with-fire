@@ -40,6 +40,7 @@
             this.pbCanvas.Size = new System.Drawing.Size(100, 50);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
+            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
             // 
             // GamePanel
             // 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PlayWithFire.Interfaces
 {
-    interface IMapService
+    interface IMapGeneratorService
     {
         Shape[,] CreateMap(Size mapSize, Size shapeSize);
         Shape[,] CreateMap(int collCount, int rowCount, Size shapeSize);

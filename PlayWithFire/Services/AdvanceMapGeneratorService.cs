@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PlayWithFire.Services
 {
-    class AdvanceMapService : IMapService
+    class AdvanceMapGeneratorService : IMapGeneratorService
     {
         public Shape[,] CreateMap(Size mapSize, Size shapeSize)
         {
