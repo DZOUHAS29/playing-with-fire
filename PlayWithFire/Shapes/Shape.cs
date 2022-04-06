@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlayWithFire.Others;
 
 namespace PlayWithFire
 {
@@ -24,6 +25,16 @@ namespace PlayWithFire
                 Size = value.Size;
             }
         }
+
+        protected Rectangle DrawRectangle
+        {
+            get
+            {
+                return new Rectangle(new Point(Location.X + Settings.ShapeGap, Location.Y + Settings.ShapeGap),
+                    new Size(Size.Width - 2 * Settings.ShapeGap, Size.Height - 2 * Settings.ShapeGap)); ;
+            }
+        }
+
         public Brush Brush { get; set; }
 
         public Shape(Point location, Size size, Brush brush)

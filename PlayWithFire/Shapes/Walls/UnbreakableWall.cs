@@ -16,7 +16,7 @@ namespace PlayWithFire
 
         public override void Draw(Graphics graphics)
         {
-            graphics.FillRectangle(Brush, Rectangle);
+            graphics.FillRectangle(Brush, DrawRectangle);
         }
     }
 }
