@@ -1,5 +1,6 @@
 ﻿using PlayWithFire.Interfaces;
 using PlayWithFire.Services;
+using PlayWithFire.Shapes.Creatures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace PlayWithFire
 {
     public partial class GamePanel : Form
     {
+        private List<Player> _players = new List<Player>();
+
         private IMapGeneratorService _mapGeneratorService;
         private MapService _mapService;
         public GamePanel()
@@ -36,6 +39,15 @@ namespace PlayWithFire
 
             _mapService.Map = _mapGeneratorService.CreateMap(shapeCount, shapeSize);
 
+            var playerOne = new Player(
+                new Point((shapeCount.Width - 2) * shapeSize.Width + shapeSize.Width / 4,
+                shapeSize.Height + shapeSize.Height / 4),
+                new Size(shapeSize.Width / 2, shapeSize.Height / 2),
+                Brushes.Red,
+                null
+                );
+            _players.Add(playerOne);
+
             this.pbCanvas.Refresh();
         }
 
@@ -45,6 +57,16 @@ namespace PlayWithFire
             {
                 _mapService.DrawMap(_mapService.Map, e.Graphics);
             }
+
+            _players.ForEach(p =>
+            {
+                p.Draw(e.Graphics);
+            });
+        }
+
+        private void GamePanel_KeyDown(object sender, KeyEventArgs e)
+        {
+            var x = e.KeyCode;
         }
     }
 }

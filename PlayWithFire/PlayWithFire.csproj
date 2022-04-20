@@ -49,10 +49,12 @@
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMapGeneratorService.cs" />
     <Compile Include="Others\ColorTranslatorService.cs" />
+    <Compile Include="Others\KeyControls.cs" />
     <Compile Include="Services\AdvanceMapGeneratorService.cs" />
     <Compile Include="Services\BasicMapGeneratorService.cs" />
     <Compile Include="Services\MapService.cs" />
     <Compile Include="Others\Settings.cs" />
+    <Compile Include="Shapes\Creatures\Player.cs" />
     <Compile Include="Shapes\Environment\Environment.cs" />
     <Compile Include="Shapes\Environment\Grass.cs" />
     <Compile Include="Shapes\Walls\BreakableWall.cs" />

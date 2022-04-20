@@ -50,6 +50,7 @@
             this.Controls.Add(this.pbCanvas);
             this.Name = "GamePanel";
             this.Text = "GamePanel";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GamePanel_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
 
