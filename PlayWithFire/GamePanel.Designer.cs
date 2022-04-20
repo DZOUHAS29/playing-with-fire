@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pbCanvas = new System.Windows.Forms.PictureBox();
+            this.tmPlayerMovement = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +44,12 @@
             this.pbCanvas.TabStop = false;
             this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
             // 
+            // tmPlayerMovement
+            // 
+            this.tmPlayerMovement.Enabled = true;
+            this.tmPlayerMovement.Interval = 300;
+            this.tmPlayerMovement.Tick += new System.EventHandler(this.tmPlayerMovement_Tick);
+            // 
             // GamePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -51,6 +59,8 @@
             this.Name = "GamePanel";
             this.Text = "GamePanel";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GamePanel_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GamePanel_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GamePanel_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
 
@@ -59,6 +69,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbCanvas;
+        private System.Windows.Forms.Timer tmPlayerMovement;
     }
 }
 

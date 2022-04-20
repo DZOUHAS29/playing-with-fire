@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PlayWithFire.Shapes.Creatures
 {
@@ -19,6 +20,32 @@ namespace PlayWithFire.Shapes.Creatures
         public override void Draw(Graphics graphics)
         {
             graphics.FillEllipse(Brush, Rectangle);
+        }
+
+        public void Move(List<Keys> pressedKeys)
+        {
+            pressedKeys.ForEach(key =>
+            {
+                if(_keyControls.MoveUp == key)
+                {
+                    MoveY(-1);
+                }
+
+                if (_keyControls.MoveDown == key)
+                {
+                    MoveY(1);
+                }
+            });
+        }
+
+        private void MoveX()
+        {
+
+        }
+
+        private void MoveY(int direction)
+        {
+            Location = new Point(Location.X, Location.Y + (direction));
         }
     }
 }

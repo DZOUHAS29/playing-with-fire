@@ -1,4 +1,5 @@
 ﻿using PlayWithFire.Interfaces;
+using PlayWithFire.Others;
 using PlayWithFire.Services;
 using PlayWithFire.Shapes.Creatures;
 using System;
@@ -15,6 +16,8 @@ namespace PlayWithFire
 {
     public partial class GamePanel : Form
     {
+        private List<Keys> _pressedKeys = new List<Keys>();
+
         private List<Player> _players = new List<Player>();
 
         private IMapGeneratorService _mapGeneratorService;
@@ -43,10 +46,19 @@ namespace PlayWithFire
                 new Point((shapeCount.Width - 2) * shapeSize.Width + shapeSize.Width / 4,
                 shapeSize.Height + shapeSize.Height / 4),
                 new Size(shapeSize.Width / 2, shapeSize.Height / 2),
-                Brushes.Red,
-                null
-                );
+                Brushes.Red, KeyControls.KeyControls1());
+
             _players.Add(playerOne);
+
+
+            //var playerTwo = new Player(
+            //   new Point(shapeSize.Width + shapeSize.Width / 4,
+            //   (shapeCount.Height - 2) * shapeSize.Height + shapeSize.Height / 4),
+            //   new Size(shapeSize.Width / 2, shapeSize.Height / 2),
+            //   Brushes.Blue, null);
+
+            //_players.Add(playerTwo);
+
 
             this.pbCanvas.Refresh();
         }
@@ -66,7 +78,26 @@ namespace PlayWithFire
 
         private void GamePanel_KeyDown(object sender, KeyEventArgs e)
         {
-            var x = e.KeyCode;
+        }
+
+        private void GamePanel_KeyUp(object sender, KeyEventArgs e)
+        {
+            _pressedKeys.Remove(e.KeyCode);
+        }
+
+        private void tmPlayerMovement_Tick(object sender, EventArgs e)
+        {
+            _players.ForEach(player =>
+            {
+                player.Move(_pressedKeys);
+            });
+
+            this.pbCanvas.Refresh();
+        }
+
+        private void GamePanel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _pressedKeys.Add((System.Windows.Forms.Keys)e.KeyChar);
         }
     }
 }
