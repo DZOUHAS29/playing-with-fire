@@ -78,7 +78,12 @@ namespace PlayWithFire
 
         private void GamePanel_KeyDown(object sender, KeyEventArgs e)
         {
+            if (!_pressedKeys.Contains(e.KeyCode))
+            {
+                _pressedKeys.Add(e.KeyCode);
+            }
         }
+
 
         private void GamePanel_KeyUp(object sender, KeyEventArgs e)
         {
@@ -89,7 +94,7 @@ namespace PlayWithFire
         {
             _players.ForEach(player =>
             {
-                player.Move(_pressedKeys);
+                player.Move(_pressedKeys, _mapService.Map);
             });
 
             this.pbCanvas.Refresh();
@@ -97,7 +102,7 @@ namespace PlayWithFire
 
         private void GamePanel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            _pressedKeys.Add((System.Windows.Forms.Keys)e.KeyChar);
+            //_pressedKeys.Add((Keys)e.KeyChar);
         }
     }
 }

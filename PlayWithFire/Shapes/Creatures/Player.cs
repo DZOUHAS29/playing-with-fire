@@ -11,6 +11,7 @@ namespace PlayWithFire.Shapes.Creatures
 {
     class Player : Shape
     {
+        private int _speed = 3;
         private readonly KeyControls _keyControls;
         public Player(Point location, Size size, Brush brush, KeyControls keyControls) : base(location, size, brush)
         {
@@ -21,31 +22,61 @@ namespace PlayWithFire.Shapes.Creatures
         {
             graphics.FillEllipse(Brush, Rectangle);
         }
-
-        public void Move(List<Keys> pressedKeys)
+        private Point GetFutureLocationAfterMove(List<Keys> pressedKeys)
         {
+            var futureLocation = new Point(Location.X, Location.Y);
+            // 50, 50
             pressedKeys.ForEach(key =>
             {
-                if(_keyControls.MoveUp == key)
+                // 50,53
+                if (_keyControls.MoveUp == key)
                 {
-                    MoveY(-1);
+                    futureLocation.Y = MoveY(-1).Y;
                 }
 
                 if (_keyControls.MoveDown == key)
                 {
-                    MoveY(1);
+                    futureLocation.Y = MoveY(1).Y;
+                }
+
+                // 50, 50 -> 47,50
+                if (_keyControls.MoveLeft == key)
+                {
+                    futureLocation.X = MoveX(-1).X;
+                }
+
+                if (_keyControls.MoveRight == key)
+                {
+                    futureLocation.X = MoveX(1).X;
                 }
             });
+
+            return futureLocation;
         }
 
-        private void MoveX()
+        private bool CanMoveToLocation(Point location, Shape[,] grid)
         {
+            return true;
+        }
+        public void Move(List<Keys> pressedKeys, Shape[,] grid)
+        {
+            var futureLocation = GetFutureLocationAfterMove(pressedKeys);
+
+            if(CanMoveToLocation(futureLocation, grid))
+            {
+                Location = futureLocation;
+            }
 
         }
 
-        private void MoveY(int direction)
+        private Point MoveX(int direction)
         {
-            Location = new Point(Location.X, Location.Y + (direction));
+            return new Point(Location.X + (direction * _speed), Location.Y);
+        }
+
+        private Point MoveY(int direction)
+        {
+            return new Point(Location.X, Location.Y + (direction * _speed));
         }
     }
 }

@@ -47,7 +47,7 @@
             // tmPlayerMovement
             // 
             this.tmPlayerMovement.Enabled = true;
-            this.tmPlayerMovement.Interval = 300;
+            this.tmPlayerMovement.Interval = 10;
             this.tmPlayerMovement.Tick += new System.EventHandler(this.tmPlayerMovement_Tick);
             // 
             // GamePanel
