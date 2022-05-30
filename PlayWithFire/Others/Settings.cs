@@ -13,6 +13,7 @@ namespace PlayWithFire.Others
         public static class Wall
         {
             public static readonly string UbreakableColor = "#a3986a";
+            public static readonly string BreakableColor = "#b00b69";
         }
     }
 }

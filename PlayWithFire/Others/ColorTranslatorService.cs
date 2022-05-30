@@ -11,7 +11,7 @@ namespace PlayWithFire.Others
     {
         public static Brush ConvertHexToBrush(string hex)
         {
-            return new SolidBrush(ColorTranslator.FromHtml(Settings.Wall.UbreakableColor));
+            return new SolidBrush(ColorTranslator.FromHtml(hex));
         }
     }
 

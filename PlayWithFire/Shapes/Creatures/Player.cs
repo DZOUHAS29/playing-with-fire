@@ -54,15 +54,30 @@ namespace PlayWithFire.Shapes.Creatures
             return futureLocation;
         }
 
-        private bool CanMoveToLocation(Point location, Shape[,] grid)
+        private bool CanMoveToLocation(Point futureLocation, Shape[,] grid)
         {
+            var futureRectangle = new Rectangle(futureLocation, Size);
+
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                {
+                    var shape = grid[i, j];
+
+                    if(shape != null && shape.Rectangle.IntersectsWith(futureRectangle))
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
         public void Move(List<Keys> pressedKeys, Shape[,] grid)
         {
             var futureLocation = GetFutureLocationAfterMove(pressedKeys);
 
-            if(CanMoveToLocation(futureLocation, grid))
+            if (CanMoveToLocation(futureLocation, grid))
             {
                 Location = futureLocation;
             }
