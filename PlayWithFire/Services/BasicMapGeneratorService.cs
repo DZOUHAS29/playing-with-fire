@@ -14,6 +14,7 @@ namespace PlayWithFire.Services
     /// </summary>
     class BasicMapGeneratorService : IMapGeneratorService
     {
+        private Random _random = new Random();
         public Shape[,] CreateMap(Size mapSize, Size shapeSize)
         {
             var shapes = new Shape[mapSize.Width, mapSize.Height];
@@ -59,12 +60,15 @@ namespace PlayWithFire.Services
             };
 
             return playerStartUpLocations.Contains(new Point(i, j));
+        }
 
-            //return i == 1 && j == 1 || i == size.Width - 2 && j == 1;
+        private bool ShouldSpawnBreakableWall()
+        {
+            return _random.Next(0, 101) < Settings.Wall.BreakableWallSpawnChance;
         }
         private void BuildRandomizedBreakableWall(int i, int j, Shape[,] shapes, Point location, Size shapeSize)
         {
-            if (shapes[i, j] == null
+            if (shapes[i, j] == null && ShouldSpawnBreakableWall()
                 && !IsPlayerStartUpLocation(i, j, new Size(shapes.GetLength(0), shapes.GetLength(1))))
             {
                 shapes[i, j] = new BreakableWall(location, shapeSize,

@@ -22,6 +22,22 @@ namespace PlayWithFire.Shapes.Creatures
         {
             graphics.FillEllipse(Brush, Rectangle);
         }
+        public void PlaceBomb(Keys pressedKey, Shape[,] shapes)
+        {
+            if(_keyControls.PlaceBomb == pressedKey)
+            {
+                // DOBROVOLNY TODO UKOL za 2 jednicky
+                // Umistete bombu na herni plochu - udeljte instanci, nastavte barvu a rozmery
+                // Pridejte list bomb, do ktereho se prida, takze se tady rozsiri parametr funkce
+                // udelejte timer a po 3s tu bombu odplate - BOMBE MUSITE PRIDAT CAS KDY vznikla DateTime.Now
+                // pridejte bombu do pole
+                // pridejte bombe funkci, ze se ji meni barva.. at to indikuje ze ma bouchnout
+                // pridejte bombe rozmery 2, a postupne kazdych 100ms co kontrolujete co ma bouchnout
+                // je swapujte, to bude simulovat animaci bomby
+
+                // POLOZ BOMBU - todo instance bomby
+            }
+        }
         private Point GetFutureLocationAfterMove(List<Keys> pressedKeys)
         {
             var futureLocation = new Point(Location.X, Location.Y);

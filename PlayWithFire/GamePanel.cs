@@ -29,7 +29,9 @@ namespace PlayWithFire
 
             InitializeComponent();
 
-            this.Size = new Size(1000, 1000);
+            this.Size = new Size(1900, 1080);
+            this.WindowState = FormWindowState.Maximized;
+
             this.StartPosition = FormStartPosition.CenterScreen;
 
             this.pbCanvas.Location = new Point(0, 0);
@@ -82,6 +84,11 @@ namespace PlayWithFire
             {
                 _pressedKeys.Add(e.KeyCode);
             }
+
+            _players.ForEach(player =>
+            {
+                player.PlaceBomb(e.KeyCode, _mapService.Map);
+            });
         }
 
 
